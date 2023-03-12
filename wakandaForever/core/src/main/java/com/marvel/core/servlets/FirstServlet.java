@@ -20,6 +20,7 @@ import java.io.IOException;
         resourceTypes="wakandaForever/components/helloworld",
         methods=HttpConstants.METHOD_GET,
         extensions="txt")
+// To Test :- http://localhost:4502/content/wakandaForever/us/en/FirstPage/jcr:content/root/container/container/helloworld.txt
 public class FirstServlet extends SlingAllMethodsServlet {
 
     @Reference
