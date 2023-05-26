@@ -13,19 +13,30 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */-->
-<div class="cmp-helloworld" data-cmp-is="helloworld">
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html">
+    <sly data-sly-call="${clientlib.all @ categories='wakandaForever.test'}"/>
+<div class="cmp-helloworld" data-cmp-is="helloworld" style="background-image:url('${properties.bgImage @ context='styleString'}');>
     <h2 class="cmp-helloworld__title">Hello World Component</h2>
     <div class="cmp-helloworld__item" data-sly-test="${properties.text}">
         <p class="cmp-helloworld__item-label">Text property:</p>
         <pre class="cmp-helloworld__item-output" data-cmp-hook-helloworld="property">${properties.text}</pre>
     </div>
+    <div class="cmp-helloworld__item" data-sly-test="${properties.customText}">
+        <p class="cmp-helloworld__item-label">Custom Text property:</p>
+        <pre class="cmp-helloworld__item-output" data-cmp-hook-helloworld="property">${properties.customText}</pre>
+    </div>
+    <div class="cmp-helloworld__item" data-sly-test="${properties.bgImage}">
+        <p class="cmp-helloworld__item-label">BgImage property:</p>
+        <pre class="cmp-helloworld__item-output" data-cmp-hook-helloworld="property">${properties.bgImage}</pre>
+    </div>
     <div class="cmp-helloworld__item" data-sly-use.model="com.marvel.core.models.HelloWorldModel" data-sly-test="${model.message}">
         <p class="cmp-helloworld__item-label">Model message:</p>
         <pre class="cmp-helloworld__item-output"data-cmp-hook-helloworld="model">${model.message}</pre>
     </div>
-    <div data-sly-use.name="com.marvel.core.services.FirstService" >
-        <h2>Random NAME :</h2>
-        <h2>${name.RandomName}</h2>
-        <h1>${name.IsHeroHungry}</h1>
+    <div class="firstService" data-sly-use.name="com.marvel.core.services.FirstService" >
+        <p class="heading">Random NAME :</p>
+        <p>${name.RandomName}</p>
+        <p>${name.IsHeroHungry}</p>
     </div>
 </div>
+</sly>

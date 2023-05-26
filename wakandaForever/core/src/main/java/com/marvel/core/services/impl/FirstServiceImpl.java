@@ -28,14 +28,23 @@ public class FirstServiceImpl implements FirstService {
     )
      @interface Config {
 
+        //Array type config
         @AttributeDefinition(name = "Fruits Array", description = "Property for Fruits")
         String[] fruits() default {"apple","banana","mango"};
 
         @AttributeDefinition(name = "Hungry", description = "Property for Hungry")
         boolean hungry() default false;
 
+        //String type config
         @AttributeDefinition(name = "Hero Name", description = "Property for Hero")
         String heroName() default "Black Panther";
+
+        //Option type config
+        @AttributeDefinition(name = "Run mode", description = "Run Mode",options = {
+                @Option(label = "Author", value = "author"),
+                @Option(label = "Publisher", value = "publisher"),
+        })
+        String runMode() default "author";
     }
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -53,7 +62,7 @@ public class FirstServiceImpl implements FirstService {
     public void activate(Config config){
         logger.info("ACTIVATED FIRST SERVICE");
         logger.info(StringUtils.isNotBlank(config.heroName()) ? "CONFIG IS FINE" : "OH OH SOMETHING WRONG");
-        this.isHeroHungry =  config.heroName() + " is" + (config.hungry() ? " hungry and eats "+ Arrays.toString(config.fruits()) : " not hungry");
+        this.isHeroHungry =  config.heroName() + " is" + (config.hungry() ? " hungry and eats "+ Arrays.toString(config.fruits()) : " not hungry"+ " And the run mode is: "+config.runMode());
     }
     @Deactivate
     public void deactivate(){

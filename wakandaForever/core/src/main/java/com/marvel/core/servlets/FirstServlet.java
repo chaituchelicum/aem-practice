@@ -22,7 +22,7 @@ import java.io.IOException;
         resourceTypes="wakandaForever/components/helloworld",
         methods=HttpConstants.METHOD_GET,
         extensions="json")
-// To Test :- http://localhost:4502/content/wakandaForever/us/en/FirstPage/jcr:content/root/container/container/helloworld.txt
+// To Test :- http://localhost:4502/content/wakandaForever/us/en/jcr:content/root/container/container/helloworld.json
 public class FirstServlet extends SlingAllMethodsServlet {
 
     @Reference
@@ -33,6 +33,7 @@ public class FirstServlet extends SlingAllMethodsServlet {
         FirstServletResponse response = new FirstServletResponse();
         response.setName(firstService.getRandomName());
         response.setAge(20);
+        response.setHungry(firstService.getIsHeroHungry());
         JSONObject json = new JSONObject(response);
         resp.setContentType("json");
         resp.getWriter().write(json.toString());
