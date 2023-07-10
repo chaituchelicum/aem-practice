@@ -4,7 +4,6 @@ $(document).ready(function(){
      if(inputAddress.length>0){
         var yourAddress = $("#divPath").attr("data-resource-path");
                    // Perform an AJAX request
-         var div = $("#my-div");
                    $.ajax({
                      url: `${yourAddress}.json`, // Replace with your endpoint URL
                      type: 'GET', // Or 'GET', depending on your endpoint
@@ -13,13 +12,25 @@ $(document).ready(function(){
                      },
                      dataType: 'json', // If the endpoint returns JSON
                      success: function(response) {
-                         $("#my-div").append("<p>HIII RAJA</p>");
-                       $("#my-div").append("<p>"+JSON.stringify(response)+"</p>");
+                         var selectElement = $('<select>',{
+                             id:"addressSelect"
+                         });
 
-                       //div.append(response);
-                         // div.html(response);
+                         // Step 3: Iterate through the JSON array
+                         $.each(response.result, function(index, item) {
+                             // Step 4: Build the option elements
+                             var optionElement = $('<option>', {
+                                 id: item.premise,
+                                 value : item.line_1+","+item.post_town,
+                                 text: item.line_1+","+item.post_town
+                             });
 
-                       // Handle the response from the server
+                             // Step 5: Append the option elements to the select element
+                             selectElement.append(optionElement);
+                         });
+
+                         // Append the select element to the container
+                         $('#my-div').append(selectElement);
                        console.log(response);
                      },
                      error: function(xhr, status, error) {
@@ -31,5 +42,10 @@ $(document).ready(function(){
         alert("Please enter any address");
      }
   })
-
+    $("#addLookup").on("input",function (){
+        var element = $("#my-div select")
+        if (element.length > 0){
+            element.remove();
+        }
+    });
 })

@@ -10,12 +10,8 @@ $(document).ready(function(){
 //          console.log("Current Path : :",path,currentPageUrl);
 
    $('.heading').on("click",function() {
-
-
-        var currentPagePath = Granite.HTTP.getPath();
-        console.log("Current Path : :",currentPagePath);
-        var somePath = $("#dataSomething").attr("data-resource-path");
-        console.log("SOME PATH :::: ",somePath);
+       const somePath = $("#dataSomething").attr("data-resource-path");
+       console.log("SOME PATH :::: ",somePath);
            // Perform an AJAX request
            $.ajax({
              url: `${somePath}.json`, // Replace with your endpoint URL

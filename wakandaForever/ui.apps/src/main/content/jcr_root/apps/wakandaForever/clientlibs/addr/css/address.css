@@ -1,6 +1,13 @@
 #addLookup{
   width:50vw;
   height:30px;
-  border: 2px solid red;
+  border: 2px solid;
   font-size: 22px;
+}
+#addressSelect{
+  width:50vw;
+  height:35px;
+  border: 2px solid;
+  font-size: 22px;
+  margin-top: 20px;
 }
