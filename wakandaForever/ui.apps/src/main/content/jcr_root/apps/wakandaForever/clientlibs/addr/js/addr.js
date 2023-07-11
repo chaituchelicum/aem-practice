@@ -12,26 +12,31 @@ $(document).ready(function(){
                      },
                      dataType: 'json', // If the endpoint returns JSON
                      success: function(response) {
-                         var selectElement = $('<select>',{
-                             id:"addressSelect"
-                         });
 
-                         // Step 3: Iterate through the JSON array
-                         $.each(response.result, function(index, item) {
-                             // Step 4: Build the option elements
-                             var optionElement = $('<option>', {
-                                 id: item.premise,
-                                 value : item.line_1+","+item.post_town,
-                                 text: item.line_1+","+item.post_town
+                         if(response.code === 2000) {
+                             var selectElement = $('<select>', {
+                                 id: "addressSelect"
                              });
 
-                             // Step 5: Append the option elements to the select element
-                             selectElement.append(optionElement);
-                         });
+                             // Step 3: Iterate through the JSON array
+                             $.each(response.result, function (index, item) {
+                                 // Step 4: Build the option elements
+                                 var optionElement = $('<option>', {
+                                     id: item.premise,
+                                     value: item.line_1 + "," + item.post_town,
+                                     text: item.line_1 + "," + item.post_town
+                                 });
 
-                         // Append the select element to the container
-                         $('#my-div').append(selectElement);
-                       console.log(response);
+                                 // Step 5: Append the option elements to the select element
+                                 selectElement.append(optionElement);
+                             });
+
+                             // Append the select element to the container
+                             $('#my-div').append(selectElement);
+                             console.log(response);
+                         }else{
+                             alert(response.message);
+                         }
                      },
                      error: function(xhr, status, error) {
                        // Handle errors
