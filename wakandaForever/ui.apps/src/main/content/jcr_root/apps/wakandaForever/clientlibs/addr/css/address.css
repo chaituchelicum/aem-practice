@@ -11,3 +11,13 @@
   font-size: 22px;
   margin-top: 20px;
 }
+#submitButton{
+  width:100px;
+  height:30px;
+  background: transparent;
+  border: 1px solid
+}
+#submitButton:hover{
+  border: 1px solid blue;
+  box-shadow: 2px 2px 2px lightblue;
+}
