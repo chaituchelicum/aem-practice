@@ -28,6 +28,7 @@ public class AddrLookUp extends SlingAllMethodsServlet {
             PrintWriter out = response.getWriter();
             out.print(resp);
             out.flush();
+            System.out.println("wfhjgfklFGKfgkjFkhdfg,hF,GkfjghFKH,gasfjHSFKghhjs,gfjsfglsjSHGF,Shjfjsf");
     }
 }
 

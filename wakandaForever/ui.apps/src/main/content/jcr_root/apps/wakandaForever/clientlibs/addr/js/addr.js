@@ -18,7 +18,7 @@ $(document).ready(function(){
                                  id: "addressSelect"
                              });
 
-                             // Step 3: Iterate through the JSON array
+                             // Iterate through the JSON array
                              $.each(response.result, function (index, item) {
                                  // Step 4: Build the option elements
                                  var optionElement = $('<option>', {
@@ -27,7 +27,7 @@ $(document).ready(function(){
                                      text: item.line_1 + "," + item.post_town
                                  });
 
-                                 // Step 5: Append the option elements to the select element
+                                 // Append the option elements to the select element
                                  selectElement.append(optionElement);
                              });
 
