@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" jcr:primaryType="nt:unstructured" jcr:title="Properties" sling:resourceType="cq/gui/components/authoring/dialog">
+    <content jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <bgImage
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                    name="./bgImage"
+                    rootPath="./"
+                    fieldLabel="Background Image"
+                    fieldDescription="Pick a background image from DAM"
+            />
+            <textPosition
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                    name="./textPosition"
+                    fieldLabel="Text Position"
+                    fieldDescription="Pick the position of Text"
+            >
+                <items jcr:primaryType="nt:unstructured">
+                    <item_0 jcr:primaryType="nt:unstructured" text="Left" value="position-left" />
+                    <item_1 jcr:primaryType="nt:unstructured" text="Right" value="position-right" />
+                    <item_2 jcr:primaryType="nt:unstructured" text="Center" value="position-center" />
+                </items>
+            </textPosition>
+            <text
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                    name="./text"
+                    value=""
+                    fieldDescription="Enter the text to be displayed"
+                    fieldLabel="Text"
+            />
+        </items>
+    </content>
+</jcr:root>

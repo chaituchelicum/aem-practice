@@ -1,0 +1,18 @@
+#parentContainer{
+    position: relative;
+}
+#position-center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+#position-left{
+    position: absolute;
+    top: 50%;
+    left: 10%;
+}
+#position-right{
+    position: absolute;
+    top: 50%;
+    left: 90%;
+}

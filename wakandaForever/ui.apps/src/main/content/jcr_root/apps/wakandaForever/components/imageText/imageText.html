@@ -1,0 +1,7 @@
+<div id="parentContainer">
+    <sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html"/>
+        <sly data-sly-call="${clientlib.all @ categories='imageText.libs'}"/>
+    <h1>Text over image component</h1>
+    <img src=${properties.bgImage} />
+    <h2 id="${properties.textPosition}">${properties.text}</h2>
+</div>
