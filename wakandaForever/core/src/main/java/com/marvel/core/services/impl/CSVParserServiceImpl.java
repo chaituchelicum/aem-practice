@@ -1,5 +1,7 @@
 package com.marvel.core.services.impl;
 
+import com.adobe.cq.dam.cfm.ContentFragment;
+import com.adobe.cq.dam.cfm.FragmentTemplate;
 import com.day.cq.dam.api.Asset;
 import com.marvel.core.services.CSVParserService;
 import org.apache.commons.csv.CSVFormat;
@@ -52,12 +54,15 @@ public class CSVParserServiceImpl implements CSVParserService {
                 }
                 jsonArray.put(jsonObject);
             }
+            createCF(jsonArray,resourceResolver);
+
             String jsonString = jsonArray.toString();
             saveJsonFile(jsonString, resourceResolver);
             deleteOnSuccess(path, resourceResolver);
             logger.info("JSON STRING : {}",jsonString);
             resourceResolver.close();
         }catch (Exception e){
+            logger.error("====="+e.getMessage());
             logger.error(e.getMessage());
 
         }
@@ -83,6 +88,7 @@ public class CSVParserServiceImpl implements CSVParserService {
             session.save();
             logger.info("JSON file created at: " + jsonFilePath);
         }catch (Exception e){
+            logger.error("!!!!!====="+e.getMessage());
             logger.error(e.getMessage());
         }
     }
@@ -93,12 +99,29 @@ public class CSVParserServiceImpl implements CSVParserService {
             session.removeItem(path);
             session.save();
         }catch (Exception e){
+            logger.error("#####====="+e.getMessage());
             logger.error(e.getMessage());
         }
 
     }
-    private void createCF(){
+    private void createCF(JSONArray jsonArray,ResourceResolver rs){
+        try {
+            Resource templateOrModelRsc = rs.getResource("/conf/wakandaForever/settings/dam/cfm/models/studentmodel");
+            FragmentTemplate tpl = templateOrModelRsc.adaptTo(FragmentTemplate.class);
+            Resource parentRsc = rs.getResource("/content/dam/wakandaForever/students_cf");
 
+
+            for (int i=0;i<jsonArray.length();i++) {
+                JSONObject jObj = jsonArray.getJSONObject(i);
+                ContentFragment newFragment = tpl.createFragment(parentRsc, jObj.getString("Name")+"_"+jObj.getString("Roll No"), "A fragment description.");
+                newFragment.getElement("studentName").setContent(jObj.getString("Name"),"text/plain");
+                newFragment.getElement("rollNumber").setContent(jObj.getString("Roll No"),"text/plain");
+                newFragment.getElement("class").setContent(jObj.getString("Class"),"text/plain");
+            }
+        }catch (Exception e){
+            logger.error("====="+e.getMessage());
+            e.printStackTrace();
+        }
 
     }
 }

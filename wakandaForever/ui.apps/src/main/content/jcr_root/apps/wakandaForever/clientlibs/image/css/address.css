@@ -1,0 +1,18 @@
+         #position-center{
+            position: absolute;
+            top: 40%;
+            left: 40%;
+            color:white;
+        }
+        #position-left{
+            position: absolute;
+            top: 40%;
+            left: 10%;
+            color:green;
+        }
+        #position-right{
+            position: absolute;
+            top: 40%;
+            left: 80%;
+            color:red;
+        }
