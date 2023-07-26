@@ -12,6 +12,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -22,8 +23,12 @@ import javax.jcr.Node;
 import javax.jcr.Session;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
+
 @Component(service = CSVParserService.class, immediate = true)
 public class CSVParserServiceImpl implements CSVParserService {
 
@@ -35,7 +40,7 @@ public class CSVParserServiceImpl implements CSVParserService {
 
     @Override
     public void parseCSV(String path) {
-        logger.info("CSV PATH : {}",path);
+        logger.info("CSV PATH : {}", path);
         try {
             Map<String, Object> authenticationInfo = new HashMap<>();
             authenticationInfo.put("sling.service.subservice", "wakanda-service");
@@ -43,39 +48,43 @@ public class CSVParserServiceImpl implements CSVParserService {
             // Get the service resource resolver.
             ResourceResolver resourceResolver = resourceResolverFactory.getServiceResourceResolver(authenticationInfo);
             Resource res = resourceResolver.getResource(path);
+            Session session = resourceResolver.adaptTo(Session.class);
             Asset asset = res.adaptTo(Asset.class);
             BufferedReader br = new BufferedReader(new InputStreamReader(asset.getRendition("original").getStream()));
             CSVParser parser = CSVFormat.DEFAULT.withHeader().parse(br);
             JSONArray jsonArray = new JSONArray();
-            for (CSVRecord record : parser){
+            for (CSVRecord record : parser) {
                 JSONObject jsonObject = new JSONObject();
                 for (String header : parser.getHeaderMap().keySet()) {
-                    jsonObject.put(header, record.get(header));
+                    jsonObject.put(header.trim(), record.get(header).trim());
                 }
                 jsonArray.put(jsonObject);
             }
-            createCF(jsonArray,resourceResolver);
+            if (createCF(jsonArray, resourceResolver)) {
+                String jsonString = jsonArray.toString();
+                saveJsonFile(jsonString, session);
+                deleteOnSuccess(path, session);
+                logger.info("JSON STRING : {}", jsonString);
+            } else {
+                moveOnFailure(path, session);
+            }
 
-            String jsonString = jsonArray.toString();
-            saveJsonFile(jsonString, resourceResolver);
-            deleteOnSuccess(path, resourceResolver);
-            logger.info("JSON STRING : {}",jsonString);
             resourceResolver.close();
-        }catch (Exception e){
-            logger.error("====="+e.getMessage());
+        } catch (Exception e) {
+            logger.error("=====" + e.getMessage());
             logger.error(e.getMessage());
 
         }
     }
 
-    private void saveJsonFile(String json, ResourceResolver resourceResolver) {
-        try{
-            String targetFolderPath = "/content/dam/wakandaForever/jsonfolder";
+    private boolean saveJsonFile(String json, Session session) {
+        try {
+            String targetFolderPath = "/content/dam/wakandaForever/students_success";
             String jsonFileName = "output.json";
-            Resource targetFolder = resourceResolver.getResource(targetFolderPath);
+            //Resource targetFolder = resourceResolver.getResource(targetFolderPath);
             // Create the JSON file
             String jsonFilePath = targetFolderPath + "/" + jsonFileName;
-            Session session = resourceResolver.adaptTo(Session.class);
+            //Session session = resourceResolver.adaptTo(Session.class);
             Node targetNode = session.getNode(targetFolderPath);
             // Create the nt:file node
             Node fileNode = JcrUtils.getOrAddNode(targetNode, "students.json", "nt:file");
@@ -87,40 +96,87 @@ public class CSVParserServiceImpl implements CSVParserService {
             contentNode.setProperty("jcr:mimeType", "application/json");
             session.save();
             logger.info("JSON file created at: " + jsonFilePath);
-        }catch (Exception e){
-            logger.error("!!!!!====="+e.getMessage());
+            return true;
+        } catch (Exception e) {
+            logger.error("!!!!!=====" + e.getMessage());
             logger.error(e.getMessage());
+            return false;
         }
     }
 
-    private void deleteOnSuccess(String path, ResourceResolver resourceResolver){
+    private void deleteOnSuccess(String path, Session session) {
         try {
-            Session session = resourceResolver.adaptTo(Session.class);
+            //Session session = resourceResolver.adaptTo(Session.class);
             session.removeItem(path);
             session.save();
-        }catch (Exception e){
-            logger.error("#####====="+e.getMessage());
+        } catch (Exception e) {
+            logger.error("#####=====" + e.getMessage());
             logger.error(e.getMessage());
         }
 
     }
-    private void createCF(JSONArray jsonArray,ResourceResolver rs){
+
+    private void moveOnFailure(String path, Session session) {
+        try {
+            //Session session = resourceResolver.adaptTo(Session.class);
+            String failPath = "/content/dam/wakandaForever/students_failure/";
+            SimpleDateFormat geek = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss");
+            Date now = new Date();
+            String date = geek.format(now);
+            session.move(path, failPath + date + ".csv");
+            session.save();
+        } catch (Exception e) {
+            logger.error("#####=====" + e.getMessage());
+            logger.error(e.getMessage());
+        }
+    }
+
+    private boolean createCF(JSONArray jsonArray, ResourceResolver rs) throws JSONException, Exception {
         try {
             Resource templateOrModelRsc = rs.getResource("/conf/wakandaForever/settings/dam/cfm/models/studentmodel");
             FragmentTemplate tpl = templateOrModelRsc.adaptTo(FragmentTemplate.class);
-            Resource parentRsc = rs.getResource("/content/dam/wakandaForever/students_cf");
+            String fragmentPath = "/content/dam/wakandaForever/student_fragments";
+            Resource parentRsc = rs.getResource(fragmentPath);
+            logger.info("-----jsonArray size is is::" + jsonArray.length());
 
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject excelObj = jsonArray.getJSONObject(i);
+                Iterable<Resource> itr = parentRsc.getChildren();
+                //AtomicBoolean flag = new AtomicBoolean(false);
+                AtomicBoolean flag = new AtomicBoolean(false);
+                itr.forEach(
+                        e -> {
+                            logger.info("Name is::" + e.getName() + "---Path is--" + e.getPath());
+                            try {
+                             if(e.getName().equalsIgnoreCase(excelObj.getString("Roll No"))){
+                                 logger.info("Existing Recordsssss.....");
+                                 ContentFragment existingCF = e.adaptTo(ContentFragment.class);
+                                 existingCF.getElement("studentName").setContent(excelObj.getString("Name"), "text/plain");
+                                 existingCF.getElement("class").setContent(excelObj.getString("Class"), "text/plain");
+                                 flag.set(true);
+                             }
 
-            for (int i=0;i<jsonArray.length();i++) {
-                JSONObject jObj = jsonArray.getJSONObject(i);
-                ContentFragment newFragment = tpl.createFragment(parentRsc, jObj.getString("Name")+"_"+jObj.getString("Roll No"), "A fragment description.");
-                newFragment.getElement("studentName").setContent(jObj.getString("Name"),"text/plain");
-                newFragment.getElement("rollNumber").setContent(jObj.getString("Roll No"),"text/plain");
-                newFragment.getElement("class").setContent(jObj.getString("Class"),"text/plain");
+                            } catch (Exception ex) {
+                                throw new RuntimeException(ex);
+                            }
+                        }
+                );
+                logger.info("Stage 11s....."+flag.get());
+                if (!flag.get()) {
+                    logger.info("New Record creation");
+                    ContentFragment newFragment = tpl.createFragment(parentRsc, excelObj.getString("Roll No"), excelObj.getString("Name"));
+                    newFragment.getElement("studentName").setContent(excelObj.getString("Name"), "text/plain");
+                    newFragment.getElement("rollNumber").setContent(excelObj.getString("Roll No"), "text/plain");
+                    newFragment.getElement("class").setContent(excelObj.getString("Class"), "text/plain");
+                    //jsonArray.put(excelObj);
+                }
+
             }
-        }catch (Exception e){
-            logger.error("====="+e.getMessage());
+            return true;
+        } catch (Exception e) {
+            logger.error("=====" + e.getMessage());
             e.printStackTrace();
+            return false;
         }
 
     }
