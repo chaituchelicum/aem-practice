@@ -68,7 +68,6 @@ public class CSVParserServiceImpl implements CSVParserService {
             } else {
                 moveOnFailure(path, session);
             }
-
             resourceResolver.close();
         } catch (Exception e) {
             logger.error("=====" + e.getMessage());
@@ -77,14 +76,12 @@ public class CSVParserServiceImpl implements CSVParserService {
         }
     }
 
-    private boolean saveJsonFile(String json, Session session) {
+    private void saveJsonFile(String json, Session session) {
         try {
             String targetFolderPath = "/content/dam/wakandaForever/students_success";
             String jsonFileName = "output.json";
-            //Resource targetFolder = resourceResolver.getResource(targetFolderPath);
             // Create the JSON file
             String jsonFilePath = targetFolderPath + "/" + jsonFileName;
-            //Session session = resourceResolver.adaptTo(Session.class);
             Node targetNode = session.getNode(targetFolderPath);
             // Create the nt:file node
             Node fileNode = JcrUtils.getOrAddNode(targetNode, "students.json", "nt:file");
@@ -96,17 +93,14 @@ public class CSVParserServiceImpl implements CSVParserService {
             contentNode.setProperty("jcr:mimeType", "application/json");
             session.save();
             logger.info("JSON file created at: " + jsonFilePath);
-            return true;
         } catch (Exception e) {
             logger.error("!!!!!=====" + e.getMessage());
             logger.error(e.getMessage());
-            return false;
         }
     }
 
     private void deleteOnSuccess(String path, Session session) {
         try {
-            //Session session = resourceResolver.adaptTo(Session.class);
             session.removeItem(path);
             session.save();
         } catch (Exception e) {
@@ -118,7 +112,6 @@ public class CSVParserServiceImpl implements CSVParserService {
 
     private void moveOnFailure(String path, Session session) {
         try {
-            //Session session = resourceResolver.adaptTo(Session.class);
             String failPath = "/content/dam/wakandaForever/students_failure/";
             SimpleDateFormat geek = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss");
             Date now = new Date();
@@ -142,33 +135,30 @@ public class CSVParserServiceImpl implements CSVParserService {
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject excelObj = jsonArray.getJSONObject(i);
                 Iterable<Resource> itr = parentRsc.getChildren();
-                //AtomicBoolean flag = new AtomicBoolean(false);
                 AtomicBoolean flag = new AtomicBoolean(false);
                 itr.forEach(
                         e -> {
                             logger.info("Name is::" + e.getName() + "---Path is--" + e.getPath());
                             try {
-                             if(e.getName().equalsIgnoreCase(excelObj.getString("Roll No"))){
-                                 logger.info("Existing Recordsssss.....");
-                                 ContentFragment existingCF = e.adaptTo(ContentFragment.class);
-                                 existingCF.getElement("studentName").setContent(excelObj.getString("Name"), "text/plain");
-                                 existingCF.getElement("class").setContent(excelObj.getString("Class"), "text/plain");
-                                 flag.set(true);
-                             }
+                                if (e.getName().equalsIgnoreCase(excelObj.getString("Roll No"))) {
+                                    logger.info("Existing Recordsssss.....");
+                                    ContentFragment existingCF = e.adaptTo(ContentFragment.class);
+                                    existingCF.getElement("studentName").setContent(excelObj.getString("Name"), "text/plain");
+                                    existingCF.getElement("class").setContent(excelObj.getString("Class"), "text/plain");
+                                    flag.set(true);
+                                }
 
                             } catch (Exception ex) {
                                 throw new RuntimeException(ex);
                             }
                         }
                 );
-                logger.info("Stage 11s....."+flag.get());
                 if (!flag.get()) {
                     logger.info("New Record creation");
                     ContentFragment newFragment = tpl.createFragment(parentRsc, excelObj.getString("Roll No"), excelObj.getString("Name"));
                     newFragment.getElement("studentName").setContent(excelObj.getString("Name"), "text/plain");
                     newFragment.getElement("rollNumber").setContent(excelObj.getString("Roll No"), "text/plain");
                     newFragment.getElement("class").setContent(excelObj.getString("Class"), "text/plain");
-                    //jsonArray.put(excelObj);
                 }
 
             }
