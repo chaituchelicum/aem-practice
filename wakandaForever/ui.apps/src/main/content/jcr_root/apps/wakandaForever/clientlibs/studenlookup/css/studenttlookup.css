@@ -1,0 +1,23 @@
+#search-box{
+  width:50vw;
+  height:30px;
+  border: 2px solid;
+  font-size: 22px;
+}
+#addressSelect{
+  width:50vw;
+  height:35px;
+  border: 2px solid;
+  font-size: 22px;
+  margin-top: 20px;
+}
+#search-btn{
+  width:100px;
+  height:30px;
+  background: transparent;
+  border: 1px solid
+}
+#search-btn:hover{
+  border: 1px solid blue;
+  box-shadow: 2px 2px 2px lightblue;
+}
