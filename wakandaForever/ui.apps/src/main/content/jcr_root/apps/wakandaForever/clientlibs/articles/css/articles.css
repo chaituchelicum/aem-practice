@@ -1,0 +1,20 @@
+#articlecontainer{
+    padding: 5px;
+    border: 2px solid rgb(152, 11, 11);
+    width: 20%;
+    margin: 5px;
+
+
+}
+#articlefeed{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+
+}
+#articlecontainer img{
+    object-fit: contain;
+}
