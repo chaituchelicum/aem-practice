@@ -7,6 +7,7 @@ import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.apache.sling.servlets.annotations.SlingServletResourceTypes;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.propertytypes.ServiceDescription;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
@@ -16,6 +17,7 @@ import java.io.PrintWriter;
 @Component(service = Servlet.class)
 @SlingServletResourceTypes(resourceTypes = "wakandaForever/components/addresslookup",
                          extensions = "json")
+@ServiceDescription("This is just desc")
 public class AddrLookUp extends SlingAllMethodsServlet {
 
     @Reference
