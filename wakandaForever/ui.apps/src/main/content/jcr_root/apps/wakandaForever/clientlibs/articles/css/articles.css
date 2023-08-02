@@ -4,8 +4,8 @@
     border: 2px solid rgb(152, 11, 11);
     width: 20%;
     margin: 5px;
-
-
+    box-sizing: content-box;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 #articlefeed{
     display: flex;
