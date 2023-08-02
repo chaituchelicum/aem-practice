@@ -1,7 +1,7 @@
 
 <sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html"/>
 <sly data-sly-call="${clientlib.all @ categories='wakandaForever.articles'}"/>
-<div class="container" id="raja">
+<div class="container" id="raja" data-resource-path="${resource.path}">
     <div id="articlefeed">
     </div>
 </div>

@@ -1,5 +1,5 @@
 $(document).ready(function(){
-var articles=[{
+var dummy_articles=[{
     "id": 1,
     "title": "Three Wise Fools",
     "desc": "Abnorm labor NOS-antepar",
@@ -216,18 +216,6 @@ var articles=[{
     "image": "http://dummyimage.com/300x166.bmp/ff4444/ffffff",
     "artPath": "https://wsj.com/felis/sed.png"
     }, {
-    "id": 37,
-    "title": "Case Against 8, The",
-    "desc": "Miliary TB NOS-exam unkn",
-    "image": "http://dummyimage.com/300x166.bmp/dddddd/000000",
-    "artPath": "http://sfgate.com/primis/in/faucibus.aspx"
-    }, {
-    "id": 38,
-    "title": "Villa Amalia",
-    "desc": "Lactation fail-antepart",
-    "image": "http://dummyimage.com/300x166.png/cc0000/ffffff",
-    "artPath": "http://51.la/rhoncus/aliquet/pulvinar/sed.xml"
-    }, {
     "id": 39,
     "title": "Big Tease, The",
     "desc": "Matern distress-postpart",
@@ -240,16 +228,24 @@ var articles=[{
     "image": "http://dummyimage.com/300x166.png/5fa2dd/ffffff",
     "artPath": "https://jugem.jp/faucibus/orci/luctus.html"
 }]
+var searchUrl = $("#raja").attr("data-resource-path");
+$.ajax({
+                     url: `${searchUrl}.json`, // Replace with your endpoint URL
+                     type: 'GET', // Or 'GET', depending on your endpoint
+                     dataType: 'json', // If the endpoint returns JSON
+                     success: function(response) {
+                         if(response.length > 0) {
+                                 var  parentElment = $("#articlefeed")
+                                response.forEach(function(item){
+                                var local=$('<div id="articlecontainer"></div>');
+                                local.append(`<img src="${item.image}"></img>`)
+                                local.append(`<p>${item.feedTitle}</p>`)
+                                local.append(`<p>${item.description}</p>`)
+                                local.append(`<a href="${item.artPath}" target="_blank">Click to see article</a>`)
+                                parentElment.append(local);
+                             })
+                         }
+                         }//sucess close
+             }) //ajax close
 
-var  parentElment = $("#articlefeed")
-articles.forEach(function(item){
-    var local=$('<div id="articlecontainer"></div>');
-    console.log(item.title);
-    local.append(`<img src="${item.image}"></img>`)
-    local.append(`<p>${item.id}</p>`)
-    local.append(`<p>${item.title}</p>`)
-    local.append(`<p>${item.desc}</p>`)
-    
-    parentElment.append(local);
-})
-    })
+      }) //document close

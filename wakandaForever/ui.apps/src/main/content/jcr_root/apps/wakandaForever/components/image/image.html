@@ -54,8 +54,11 @@
         </noscript>
     </a>
     <h2 id="${properties.position}"> ${properties.text}</h2>
+
     <span class="cmp-image__title" itemprop="caption" data-sly-test="${!image.displayPopupTitle && image.title}">${image.title}</span>
     <meta itemprop="caption" content="${image.title}" data-sly-test="${image.displayPopupTitle && image.title}">
+    <h2> ${pageProperties.feedTitle}</h2>
+    <h2> ${pageProperties.feedDesc}</h2>
 
 </div>
 <sly data-sly-call="${templates.placeholder @ isEmpty = !image.src, classAppend = 'cmp-image cq-dd-image'}"></sly>
