@@ -23,8 +23,10 @@ import javax.servlet.Servlet;
 import java.util.*;
 
 @Component(service = {Servlet.class})
-@SlingServletResourceTypes(resourceTypes = "wakandaForever/components/articles",
+@SlingServletResourceTypes(resourceTypes = {"wakandaForever/components/articles", "wakandaForever/components/page"},
         extensions = "json")
+
+
 public class Articles extends SlingSafeMethodsServlet {
     @Reference
     private QueryBuilder queryBuilder;
