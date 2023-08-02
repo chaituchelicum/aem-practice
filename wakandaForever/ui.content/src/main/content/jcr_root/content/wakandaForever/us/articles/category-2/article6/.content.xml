@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2023-08-01T22:29:59.361+05:30"
+        cq:lastModifiedBy="admin"
+        cq:template="/conf/wakandaForever/settings/wcm/templates/rajraao-template"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="article-7"
+        sling:resourceType="wakandaForever/components/page"
+        articleDate="{Date}2023-07-07T00:00:00.000+05:30"
+        feedDesc="page-sevenpage-sevenpage-sevenpage-sevenpage-sevenpage-seven"
+        feedTitle="page-seven">
+        <root
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wakandaForever/components/container">
+            <container
+                jcr:lastModified="{Date}2023-08-01T19:37:04.910+05:30"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wakandaForever/components/container"
+                layout="responsiveGrid">
+                <title
+                    jcr:lastModified="{Date}2023-08-01T19:30:21.086+05:30"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="This title is frrom initial content of raja template"
+                    sling:resourceType="wakandaForever/components/title"
+                    type="h1"/>
+            </container>
+            <image
+                jcr:lastModified="{Date}2023-08-01T22:24:40.769+05:30"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wakandaForever/components/image"
+                altValueFromDAM="false"
+                displayPopupTitle="false"
+                fileReference="/content/dam/we-retail/en/experiences/skitouring/skitouring-1.jpg"
+                isDecorative="false"
+                position="position-right"
+                text="Hello"
+                titleValueFromDAM="false"/>
+        </root>
+    </jcr:content>
+</jcr:root>

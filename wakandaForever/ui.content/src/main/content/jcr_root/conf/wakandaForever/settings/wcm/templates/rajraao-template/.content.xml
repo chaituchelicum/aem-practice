@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+    jcr:primaryType="cq:Template">
+    <jcr:content
+        cq:lastModified="{Date}2023-08-01T19:59:10.402+05:30"
+        cq:lastModifiedBy="admin"
+        cq:templateType="/conf/wakandaForever/settings/wcm/template-types/page"
+        jcr:description="two column layout"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="rajraao-template"
+        status="enabled"/>
+</jcr:root>

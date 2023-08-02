@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2023-07-23T12:56:29.450+05:30"
+        cq:lastModifiedBy="admin"
+        cq:template="/conf/wakandaForever/settings/wcm/templates/page-content"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="addressPage"
+        sling:resourceType="wakandaForever/components/page">
+        <root
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wakandaForever/components/container">
+            <container
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wakandaForever/components/container">
+                <title
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="wakandaForever/components/title"/>
+                <container
+                    jcr:lastModified="{Date}2023-07-07T11:05:07.116+05:30"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="wakandaForever/components/container">
+                    <addresslookup
+                        jcr:lastModified="{Date}2023-07-23T02:02:37.850+05:30"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="wakandaForever/components/addresslookup"
+                        placeholderText="london"
+                        titleText="london"/>
+                    <contentfragment
+                        jcr:lastModified="{Date}2023-07-23T12:56:29.446+05:30"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="wakandaForever/components/contentfragment"
+                        displayMode="multi"
+                        fragmentPath="/content/dam/ReactOnAEM/pgstudent"
+                        paragraphScope="all"
+                        text="PGStudent PG Student Name Roll Number Class"
+                        variationName="master"/>
+                </container>
+            </container>
+        </root>
+    </jcr:content>
+</jcr:root>

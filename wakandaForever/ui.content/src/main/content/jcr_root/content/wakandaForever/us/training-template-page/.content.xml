@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2023-08-01T18:05:12.317+05:30"
+        cq:lastModifiedBy="admin"
+        cq:template="/conf/wakandaForever/settings/wcm/templates/rajraao-template"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="training-template-page"
+        sling:resourceType="wakandaForever/components/page">
+        <root
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wakandaForever/components/container">
+            <container
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wakandaForever/components/container"
+                layout="responsiveGrid">
+                <title
+                    jcr:lastModified="{Date}2023-08-01T18:02:34.135+05:30"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="My Title Component"
+                    sling:resourceType="wakandaForever/components/title"
+                    type="h3"/>
+                <text
+                    jcr:lastModified="{Date}2023-08-01T18:03:09.751+05:30"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="wakandaForever/components/text"
+                    id="MAAX"
+                    text="&lt;p>NAA&lt;/p>&#xd;&#xa;"
+                    textIsRich="true"/>
+            </container>
+        </root>
+    </jcr:content>
+</jcr:root>
