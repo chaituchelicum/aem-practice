@@ -1,0 +1,23 @@
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html"/>
+<sly data-sly-call="${clientlib.all @ categories='customtext.libs'}"/>
+<div class="container1"  data-resource-path="${resource.path}" data-sly-use.nav="com.adobe.cq.wcm.core.components.models.Navigation">
+    <div id="customtext">
+        <p>Nav Component</p>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav" data-sly-list.item="${nav.items}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="${item.path}.html" target="_blank">${item.title}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</div>
