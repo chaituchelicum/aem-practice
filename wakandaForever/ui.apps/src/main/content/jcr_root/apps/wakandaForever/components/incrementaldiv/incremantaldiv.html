@@ -1,0 +1,11 @@
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html"/>
+<sly data-sly-call="${clientlib.all @ categories='customtext.libs'}"/>
+<div class="container"  data-resource-path="${resource.path}">
+    <div id="customtext">
+        <p>Custom Text Component</p>
+        <label for="customtext" class="form-label">
+            <p>${properties.label}</p>
+        </label>
+            <input class="form-control form-control-lg" name="customtext" type="${properties.type}" required="${properties.required}" maxlength="${properties.max}" placeholder="${properties.placeholder}" />
+    </div>
+</div>

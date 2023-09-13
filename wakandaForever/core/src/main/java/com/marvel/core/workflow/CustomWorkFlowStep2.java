@@ -22,5 +22,7 @@ public class CustomWorkFlowStep2 implements WorkflowProcess{
 
         logger.error("nickName >>>>>>> {}", nickName);
         logger.error("interest >>>>>>> {}", interest);
+        String args = metaDataMap.get("PROCESS_ARGS", String.class);
+        logger.error("Process args from step2: {}", args);
     }
 }

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/apps/ReactOnAEM/clientlibs"/>
+    <filter root="/apps/ReactOnAEM/components"/>
+    <filter root="/apps/ReactOnAEM/i18n"/>
+</workspaceFilter>

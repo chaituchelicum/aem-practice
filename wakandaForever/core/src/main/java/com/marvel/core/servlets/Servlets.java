@@ -10,14 +10,14 @@ import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import java.io.IOException;
 
-@Component(service = Servlet.class, property = { "sling.servlet.methods=GET", "sling.servlet.paths=/addressLookUp" })
+@Component(service = Servlet.class, property = { "sling.servlet.methods=GET", "sling.servlet.paths=/bin/addressLookup" })
 public class Servlets extends SlingAllMethodsServlet {
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
         // Process the form submission and generate the response
-        String responseData = "Response from servlet";
+        String responseData = "Response from path servlet";
 
         // Set the response data as a property to be displayed in the HTL component
-        request.setAttribute("response", responseData);
+        response.getWriter().write(responseData);
     }
 }

@@ -1,0 +1,7 @@
+{
+    "scripts": [
+        "create path (sling:OrderedFolder) /content/dam/ReactOnAEM",
+        "create path (nt:unstructured) /content/dam/ReactOnAEM/jcr:content",
+        "set properties on /content/dam/ReactOnAEM/jcr:content\n  set cq:conf{String} to /conf/ReactOnAEM\n  set jcr:title{String} to \"React-On-AEM\"\nend"
+    ]
+}

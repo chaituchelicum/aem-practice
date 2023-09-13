@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Forecast should render the Forecast component 1`] = `
+Array [
+  <style
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": ".css-l6d5he .rw-today-current{font-size:45px;}.css-l6d5he .rw-today-range{font-size:12px;margin:0 0 5px 2px;}.css-l6d5he .rw-today-desc{font-size:16px;}.css-l6d5he .rw-today-info div{margin-bottom:5px;}.css-l6d5he .rw-today-hr{width:100%;height:0;border-bottom:solid 1px #fff;opacity:0.4;margin:10px 0px;}",
+      }
+    }
+    data-emotion="css l6d5he"
+  />,
+  <div
+    className="rw-today css-l6d5he"
+  >
+    <div
+      className="rw-today-date"
+    >
+      Fri 27 November
+    </div>
+    <div
+      className="rw-today-hr"
+    />
+    <div
+      className="rw-today-current"
+    >
+      -2
+       
+      F
+    </div>
+    <div
+      className="rw-today-desc"
+    >
+      clear sky
+    </div>
+    <div
+      className="rw-today-hr"
+    />
+    <div
+      className="rw-today-info"
+    >
+      <div>
+        Wind
+        : 
+        <b>
+          2
+        </b>
+         
+        km/h
+      </div>
+      <div>
+        Humidity
+        : 
+        <b>
+          90
+        </b>
+         %
+      </div>
+    </div>
+  </div>,
+]
+`;

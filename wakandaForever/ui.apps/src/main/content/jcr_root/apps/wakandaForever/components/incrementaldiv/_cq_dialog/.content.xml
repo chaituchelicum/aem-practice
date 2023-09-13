@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Properties"
+          sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <type jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/coral/foundation/form/select" name="./type" fieldLabel="Input Type" fieldDescription="Select Input Type" required="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <item_0 jcr:primaryType="nt:unstructured" text="Number" value="number" />
+                            <item_1 jcr:primaryType="nt:unstructured" text="Text" value="text" />
+                        </items>
+                    </type>
+                    <max jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/coral/foundation/form/numberfield" name="./max" fieldLabel="Max Limit" fieldDescription="Enter the max number of characters allowed" min="{Long}1" max="{Long}50" />
+                    <placeholder jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/coral/foundation/form/textfield" name="./placeholder" value="" fieldLabel="Placeholder" required="{Boolean}true" />
+                    <label jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/coral/foundation/form/textfield" name="./label" value="" fieldLabel="Label" required="{Boolean}true" />
+                    <required jcr:primaryType="nt:unstructured" sling:resourceType="granite/ui/components/coral/foundation/form/checkbox" name="./required" text="Required" value="{Boolean}true" uncheckedValue="{Boolean}false" fieldLabel="Required" fieldDescription="Check if the field is required" />
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>

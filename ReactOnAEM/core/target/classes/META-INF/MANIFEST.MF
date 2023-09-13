@@ -1,0 +1,43 @@
+Manifest-Version: 1.0
+Bundle-Category: React-On-AEM
+Bundle-Description: Core bundle for React-On-AEM
+Bundle-ManifestVersion: 2
+Bundle-Name: React-On-AEM - Core
+Bundle-SymbolicName: ReactOnAEM.core
+Bundle-Version: 1.0.0.SNAPSHOT
+Export-Package: com.react.core.filters;version="1.0";uses:="javax.serv
+ let",com.react.core.listeners;version="1.0";uses:="org.apache.sling.a
+ pi.resource.observation",com.react.core.models;version="1.0";uses:="c
+ om.adobe.cq.export.json,javax.annotation,org.apache.sling.api,org.apa
+ che.sling.api.resource,org.apache.sling.models.annotations,org.apache
+ .sling.models.annotations.injectorspecific",com.react.core.schedulers
+ ;version="1.0",com.react.core.servlets;version="1.0";uses:="javax.ser
+ vlet,org.apache.sling.api,org.apache.sling.api.servlets"
+Import-Package: javax.annotation;version="0.0.0",com.adobe.cq.export.j
+ son;version="[2.0,3)",com.day.cq.wcm.api;version="[1.29,2)",com.react
+ .core.filters;version="[1.0,2)",com.react.core.listeners;version="[1.
+ 0,2)",com.react.core.schedulers;version="[1.0,2)",com.react.core.serv
+ lets;version="[1.0,2)",javax.servlet;version="[3.1,4)",org.apache.com
+ mons.lang3;version="[3.12,4)",org.apache.sling.api;version="[2.3,3)",
+ org.apache.sling.api.request;version="[2.4,3)",org.apache.sling.api.r
+ esource;version="[2.12,3)",org.apache.sling.api.resource.observation;
+ version="[1.2,2)",org.apache.sling.api.servlets;version="[2.3,3)",org
+ .apache.sling.models.annotations;version="[1.5,2)",org.apache.sling.m
+ odels.annotations.injectorspecific;version="[1.1,2)",org.slf4j;versio
+ n="[1.7,2)"
+Provide-Capability: osgi.service;objectClass:List<String>="java.lang.R
+ unnable",osgi.service;objectClass:List<String>="javax.servlet.Filter"
+ ;uses:="javax.servlet",osgi.service;objectClass:List<String>="javax.s
+ ervlet.Servlet";uses:="javax.servlet",osgi.service;objectClass:List<S
+ tring>="org.apache.sling.api.resource.observation.ResourceChangeListe
+ ner";uses:="org.apache.sling.api.resource.observation"
+Require-Capability: osgi.extender;filter:="(&(osgi.extender=osgi.compo
+ nent)(version>=1.4.0)(!(version>=2.0.0)))",osgi.ee;filter:="(&(osgi.e
+ e=JavaSE)(version=1.8))"
+Service-Component: OSGI-INF/com.react.core.filters.LoggingFilter.xml,O
+ SGI-INF/com.react.core.listeners.SimpleResourceListener.xml,OSGI-INF/
+ com.react.core.schedulers.SimpleScheduledTask.xml,OSGI-INF/com.react.
+ core.servlets.SimpleServlet.xml
+Sling-Model-Classes: com.react.core.models.HelloWorldModel,com.react.c
+ ore.models.OpenWeatherModelImpl
+

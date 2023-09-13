@@ -1,0 +1,4 @@
+com/react/it/tests/CreatePageIT.class
+com/react/it/tests/GetPageIT.class
+com/react/it/tests/PublishPageValidationIT.class
+com/react/it/tests/HtmlUnitClient.class

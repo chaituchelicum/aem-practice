@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>React-On-AEM - All</comment>
+<entry key="allowIndexDefinitions">false</entry>
+<entry key="created">2023-09-04T11:29:38.642Z</entry>
+<entry key="groupId">com.react</entry>
+<entry key="name">ReactOnAEM.all</entry>
+<entry key="description">All content package for React-On-AEM</entry>
+<entry key="artifactId">ReactOnAEM.all</entry>
+<entry key="version">1.0.0-SNAPSHOT</entry>
+<entry key="packageType">container</entry>
+<entry key="requiresRoot">false</entry>
+<entry key="group">com.react</entry>
+</properties>

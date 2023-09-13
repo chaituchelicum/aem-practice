@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Created-By: Apache Jackrabbit FileVault - Package Maven Plugin 1.1.6
+Build-Jdk-Spec: 11
+Implementation-Title: React-On-AEM - UI content
+Implementation-Version: 1.0.0-SNAPSHOT
+Content-Package-Type: content
+Content-Package-Id: com.react:ReactOnAEM.ui.content:1.0.0-SNAPSHOT
+Content-Package-Description: UI content package for React-On-AEM
+Content-Package-Dependencies: com.react:ReactOnAEM.ui.apps:1.0.0-SNAPSHO
+ T
+Content-Package-Dependencies-Locations: com.react:ReactOnAEM.ui.apps:1.0
+ .0-SNAPSHOT=maven:com.react:ReactOnAEM.ui.apps:1.0.0-SNAPSHOT:zip
+Content-Package-Roots: /conf/ReactOnAEM,/content/ReactOnAEM,/content/dam
+ /ReactOnAEM/asset.jpg,/content/experience-fragments/ReactOnAEM
+

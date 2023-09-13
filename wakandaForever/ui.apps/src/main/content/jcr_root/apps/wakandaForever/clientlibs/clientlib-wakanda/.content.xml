@@ -4,4 +4,5 @@
     allowProxy="{Boolean}true"
     categories="[wakandaForever.test]"
           dependencies="[cq.jquery]"
+          embed="[address.libs]"
 />
